@@ -49,6 +49,7 @@
     <modules>
         <module>kumoko-commons</module>
         <module>kumoko-scraper</module>
+        <module>kumoko-jdownloader</module>
     </modules>
 
     <dependencyManagement>
@@ -57,6 +58,12 @@
                 <groupId>fr.adbonnin.kumoko</groupId>
                 <artifactId>kumoko-commons</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.13.1</version>
             </dependency>
 
             <!-- Test dependencies -->
