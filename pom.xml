@@ -47,11 +47,18 @@
     </properties>
 
     <modules>
-        <module>kumoko-core</module>
+        <module>kumoko-commons</module>
+        <module>kumoko-scraper</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>fr.adbonnin.kumoko</groupId>
+                <artifactId>kumoko-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- Test dependencies -->
             <dependency>
                 <groupId>org.spockframework</groupId>
