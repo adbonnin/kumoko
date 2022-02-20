@@ -186,6 +186,10 @@ public class FileUtils {
         }
     }
 
+    public static boolean deleteRecursively(File file) throws IOException {
+        return deleteRecursively(file.toPath());
+    }
+
     public static boolean deleteRecursively(Path path) throws IOException {
 
         if (Files.notExists(path)) {
