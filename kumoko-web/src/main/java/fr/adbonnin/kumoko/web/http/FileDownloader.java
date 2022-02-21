@@ -32,6 +32,11 @@ public class FileDownloader {
             return file;
         }
 
+        final File parentFile = file.getParentFile();
+        if (parentFile != null) {
+            FileUtils.createDir(parentFile);
+        }
+
         try (FileOutputStream fos = new FileOutputStream(downloadFile);
              OutputStream bos = new BufferedOutputStream(fos)) {
             consumer.accept(new DownloadResponseHandler(bos));

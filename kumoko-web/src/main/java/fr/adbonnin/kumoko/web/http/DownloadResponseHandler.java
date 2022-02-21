@@ -19,9 +19,8 @@ public class DownloadResponseHandler implements HttpClientResponseHandler<Void> 
 
     @Override
     public Void handleResponse(ClassicHttpResponse response) throws IOException {
-        HttpEntity entity = null;
+        final HttpEntity entity = response.getEntity();
         try {
-            entity = response.getEntity();
             entity.writeTo(output);
             return null;
         }

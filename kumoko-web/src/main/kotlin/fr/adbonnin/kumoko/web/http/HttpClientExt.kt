@@ -1,6 +1,8 @@
 package fr.adbonnin.kumoko.web.http
 
+import com.fasterxml.jackson.databind.ObjectReader
 import fr.adbonnin.kumoko.web.html.ParseHtmlResponseHandler
+import fr.adbonnin.kumoko.web.json.ParseJsonValueResponseHandler
 import org.apache.hc.client5.http.classic.HttpClient
 import org.apache.hc.core5.http.ClassicHttpRequest
 import org.apache.hc.core5.http.HttpHost
@@ -23,6 +25,22 @@ fun HttpClient.parseHtml(target: HttpHost, request: ClassicHttpRequest): Documen
 
 fun HttpClient.parseHtml(target: HttpHost, request: ClassicHttpRequest, context: HttpContext?): Document {
     return execute(target, request, context, ParseHtmlResponseHandler(request))
+}
+
+fun <T> HttpClient.parseJsonValue(request: ClassicHttpRequest, reader: ObjectReader): T {
+    return execute(request, ParseJsonValueResponseHandler(reader))
+}
+
+fun <T> HttpClient.parseJsonValue(request: ClassicHttpRequest, context: HttpContext?, reader: ObjectReader): T {
+    return execute(request, context, ParseJsonValueResponseHandler(reader))
+}
+
+fun <T> HttpClient.parseJsonValue(target: HttpHost, request: ClassicHttpRequest, reader: ObjectReader): T {
+    return execute(target, request, ParseJsonValueResponseHandler(reader))
+}
+
+fun <T> HttpClient.parseJsonValue(target: HttpHost, request: ClassicHttpRequest, context: HttpContext?, reader: ObjectReader): T {
+    return execute(target, request, context, ParseJsonValueResponseHandler(reader))
 }
 
 fun HttpClient.download(request: ClassicHttpRequest, output: OutputStream) {
