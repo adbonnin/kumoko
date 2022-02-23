@@ -18,15 +18,7 @@ fun File.hasExtension(): Boolean {
     return FileUtils.hasExtension(name)
 }
 
-fun File.newNonExistentCleanedFile(filename: String, emptyFilename: String): File {
-    return FileUtils.newNonExistentCleanedFile(this, filename, emptyFilename)
-}
-
-fun File.newNonExistentCleanedFile(filename: String, emptyFilename: String, retryLimit: Int): File {
-    return FileUtils.newNonExistentCleanedFile(this, filename, emptyFilename, retryLimit)
-}
-
-fun File.newNonExistentCleanedFile(filename: String, emptyFilename: String, retryLimit: Int, builder: NonExistentFileBuilder): File {
+fun File.newNonExistentCleanedFile(filename: String, emptyFilename: String, retryLimit: Int = Int.MAX_VALUE, builder: NonExistentFileBuilder = SimpleNonExistentFilenameBuilder.INSTANCE): File {
     return FileUtils.newNonExistentCleanedFile(this, filename, emptyFilename, retryLimit, builder)
 }
 
