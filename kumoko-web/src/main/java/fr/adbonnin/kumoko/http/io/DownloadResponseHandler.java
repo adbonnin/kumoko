@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http.io;
 
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;

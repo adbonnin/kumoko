@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http;
 
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;

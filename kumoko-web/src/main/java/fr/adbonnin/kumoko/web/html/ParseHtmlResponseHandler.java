@@ -1,6 +1,6 @@
 package fr.adbonnin.kumoko.web.html;
 
-import fr.adbonnin.kumoko.web.http.HttpClientUtils;
+import fr.adbonnin.kumoko.http.HttpClientUtils;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;

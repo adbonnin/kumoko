@@ -1,5 +1,6 @@
 package fr.adbonnin.kumoko.web.http
 
+import fr.adbonnin.kumoko.http.HttpClientUtils
 import org.apache.hc.core5.http.ContentType
 import org.apache.hc.core5.http.HttpEntity
 import spock.lang.Specification

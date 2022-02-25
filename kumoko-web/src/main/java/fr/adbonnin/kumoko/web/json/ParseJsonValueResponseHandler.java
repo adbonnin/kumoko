@@ -2,7 +2,7 @@ package fr.adbonnin.kumoko.web.json;
 
 import com.fasterxml.jackson.databind.ObjectReader;
 import fr.adbonnin.kumoko.io.IOUtils;
-import fr.adbonnin.kumoko.web.http.HttpClientUtils;
+import fr.adbonnin.kumoko.http.HttpClientUtils;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;

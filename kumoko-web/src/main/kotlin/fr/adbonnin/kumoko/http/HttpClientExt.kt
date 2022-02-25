@@ -1,6 +1,9 @@
-package fr.adbonnin.kumoko.web.http
+package fr.adbonnin.kumoko.http
 
 import com.fasterxml.jackson.databind.ObjectReader
+import fr.adbonnin.kumoko.http.io.DownloadResponseHandler
+import fr.adbonnin.kumoko.http.io.FileDownloader
+import fr.adbonnin.kumoko.http.io.RedownloadMode
 import fr.adbonnin.kumoko.web.html.ParseHtmlResponseHandler
 import fr.adbonnin.kumoko.web.json.ParseJsonValueResponseHandler
 import org.apache.hc.client5.http.classic.HttpClient

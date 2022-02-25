@@ -1,5 +1,6 @@
 package fr.adbonnin.kumoko.web.http
 
+import fr.adbonnin.kumoko.http.HttpUtils
 import spock.lang.Specification
 
 class HttpUtilsSpec extends Specification {

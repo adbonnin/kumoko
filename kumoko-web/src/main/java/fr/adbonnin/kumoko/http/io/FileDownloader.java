@@ -1,5 +1,7 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http.io;
 
+import fr.adbonnin.kumoko.http.HttpUtils;
+import fr.adbonnin.kumoko.http.URIUtils;
 import fr.adbonnin.kumoko.io.FileUtils;
 import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 
@@ -9,7 +11,8 @@ import java.util.function.Consumer;
 public class FileDownloader {
 
     public File downloadToDir(File dir, String path, String emptyFilename, RedownloadMode redownloadMode, Consumer<HttpClientResponseHandler<Void>> consumer) throws IOException {
-        final String filename = HttpUtils.toFilename(path, emptyFilename);
+        final String decodedPath = URIUtils.decodeUri(path);
+        final String filename = HttpUtils.toFilename(decodedPath, emptyFilename);
         return download(new File(dir, filename), redownloadMode, consumer);
     }
 

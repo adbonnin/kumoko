@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http;
 
 import javax.net.ssl.X509TrustManager;
 import java.security.cert.X509Certificate;

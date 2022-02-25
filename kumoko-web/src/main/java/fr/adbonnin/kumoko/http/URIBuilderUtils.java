@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http;
 
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class UriBuilderUtils {
+public class URIBuilderUtils {
 
     public static Optional<NameValuePair> getFirstQueryParam(URIBuilder uriBuilder, String name) {
 
@@ -21,5 +21,5 @@ public class UriBuilderUtils {
         return Optional.empty();
     }
 
-    private UriBuilderUtils() { /* Cannot be instantiated */ }
+    private URIBuilderUtils() { /* Cannot be instantiated */ }
 }

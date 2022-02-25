@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http;
 
 import org.apache.hc.client5.http.impl.DefaultRedirectStrategy;
 import org.apache.hc.core5.http.HttpRequest;

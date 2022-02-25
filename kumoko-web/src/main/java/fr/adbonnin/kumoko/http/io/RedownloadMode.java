@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http.io;
 
 public enum RedownloadMode {
     NO_REDOWNLOAD,

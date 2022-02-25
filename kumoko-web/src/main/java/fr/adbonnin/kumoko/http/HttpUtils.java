@@ -1,4 +1,4 @@
-package fr.adbonnin.kumoko.web.http;
+package fr.adbonnin.kumoko.http;
 
 import fr.adbonnin.kumoko.io.FileUtils;
 

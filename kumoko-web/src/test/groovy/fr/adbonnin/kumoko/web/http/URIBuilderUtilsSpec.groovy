@@ -1,17 +1,18 @@
 package fr.adbonnin.kumoko.web.http
 
+import fr.adbonnin.kumoko.http.URIBuilderUtils
 import org.apache.hc.core5.http.message.BasicNameValuePair
 import org.apache.hc.core5.net.URIBuilder
 import spock.lang.Specification
 
-class UriBuilderUtilsSpec extends Specification {
+class URIBuilderUtilsSpec extends Specification {
 
     void "should return the first query param"() {
         given:
         def uriBuilder = new URIBuilder(url)
 
         when:
-        def pair = UriBuilderUtils.getFirstQueryParam(uriBuilder, name)
+        def pair = URIBuilderUtils.getFirstQueryParam(uriBuilder, name)
 
         then:
         pair == expectedPair
