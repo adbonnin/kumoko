@@ -234,7 +234,6 @@ class FileUtilsSpec extends Specification {
         false     || 1                  | 1
     }
 
-
     void "should recursively delete the folder"() {
         given:
         def dir = Files.createDirectory(tempDir.resolve("dir"))

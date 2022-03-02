@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 public class FileDownloader {
 
     public File downloadToDir(File dir, String path, String emptyFilename, RedownloadMode redownloadMode, Consumer<HttpClientResponseHandler<Void>> consumer) throws IOException {
-        final String decodedPath = URIUtils.decodeUri(path);
+        final String decodedPath = URIUtils.decode(path);
         final String filename = HttpUtils.toFilename(decodedPath, emptyFilename);
         return download(new File(dir, filename), redownloadMode, consumer);
     }

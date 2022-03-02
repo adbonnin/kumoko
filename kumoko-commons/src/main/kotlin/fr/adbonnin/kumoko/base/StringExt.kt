@@ -1,5 +1,8 @@
 package fr.adbonnin.kumoko.base
 
+import fr.adbonnin.kumoko.http.URIUtils
+import java.nio.charset.Charset
+
 fun String.removeBefore(searchStr: String, ignoreCase: Boolean = false, fromIndex: Int = 0, include: Boolean = false): String {
     return StringUtils.removeBefore(this, searchStr, ignoreCase, fromIndex, include)
 }
@@ -30,4 +33,20 @@ fun String.lastIndexOfIgnoreCase(str: String, fromIndex: Int = lastIndex): Int {
 
 fun String.lastIndexOf(str: String, ignoreCase: Boolean, fromIndex: Int = lastIndex): Int {
     return StringUtils.lastIndexOf(this, str, ignoreCase, fromIndex)
+}
+
+fun String.encodeUri(): String {
+    return URIUtils.encodeUri(this)
+}
+
+fun String.encodeUri(charset: Charset): String {
+    return URIUtils.encodeUri(this, charset)
+}
+
+fun String.decodeUri(): String {
+    return URIUtils.decode(this)
+}
+
+fun String.decodeUri(charset: Charset): String {
+    return URIUtils.decode(this, charset)
 }

@@ -11,6 +11,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class ParseHtmlResponseHandler implements HttpClientResponseHandler<Document> {
@@ -26,7 +27,10 @@ public class ParseHtmlResponseHandler implements HttpClientResponseHandler<Docum
         final HttpEntity entity = response.getEntity();
         try {
             final String charsetName = HttpClientUtils.getCharset(entity, ContentType.TEXT_PLAIN).toString();
-            return Jsoup.parse(entity.getContent(), charsetName, request.getRequestUri());
+            return Jsoup.parse(entity.getContent(), charsetName, request.getUri().toString());
+        }
+        catch (URISyntaxException e) {
+            throw new IOException(e);
         }
         finally {
             EntityUtils.consumeQuietly(entity);
