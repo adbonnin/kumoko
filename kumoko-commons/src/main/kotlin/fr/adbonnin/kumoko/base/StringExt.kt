@@ -35,6 +35,10 @@ fun String.lastIndexOf(str: String, ignoreCase: Boolean, fromIndex: Int = lastIn
     return StringUtils.lastIndexOf(this, str, ignoreCase, fromIndex)
 }
 
+fun String.stripAccents(): String {
+    return StringUtils.stripAccents(this)
+}
+
 fun String.encodeUri(): String {
     return URIUtils.encodeUri(this)
 }

@@ -1,5 +1,6 @@
 package fr.adbonnin.kumoko.base
 
+
 import spock.lang.Specification
 
 class StringUtilsSpec extends Specification {
@@ -134,5 +135,36 @@ class StringUtilsSpec extends Specification {
 
         str = TEST_STR
         ignoreCase = false
+    }
+
+    void "should strip accents"() {
+        expect:
+        StringUtils.stripAccents(str) == expectedStr
+
+        where:
+        str                                          || expectedStr
+        null                                         || null
+        ''                                           || ''
+        'a-b'                                        || 'a-b'
+
+        '\u00C0\u00C1\u00C2\u00C3\u00C4\u00C5\u0104' || 'AAAAAAA'
+        '\u00C7\u0106'                               || 'CC'
+        '\u00C8\u00C9\u00CA\u00CB'                   || 'EEEE'
+        '\u00CC\u00CD\u00CE\u00CF'                   || 'IIII'
+        '\u0141'                                     || 'L'
+        '\u00D1\u0143'                               || 'NN'
+        '\u00D2\u00D3\u00D4\u00D5\u00D6'             || 'OOOOO'
+        '\u00D9\u00DA\u00DB\u00DC'                   || 'UUUU'
+        '\u015A'                                     || 'S'
+        '\u00DD'                                     || 'Y'
+        '\u017B\u0179'                               || 'ZZ'
+
+        '\u0105'                                     || 'a'
+        '\u0107'                                     || 'c'
+        '\u0142'                                     || 'l'
+        '\u0144'                                     || 'n'
+        '\u00F3'                                     || 'o'
+        '\u015B'                                     || 's'
+        '\u017C\u017A'                               || 'zz'
     }
 }

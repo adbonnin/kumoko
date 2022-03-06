@@ -1,5 +1,8 @@
 package fr.adbonnin.kumoko.base;
 
+import java.text.Normalizer;
+import java.util.regex.Pattern;
+
 public class StringUtils {
 
     public static final String EMPTY = "";
@@ -7,6 +10,8 @@ public class StringUtils {
     public static final int INDEX_NOT_FOUND = -1;
 
     public static final char NO_BREAK_SPACE = '\u00A0';
+
+    private static final Pattern STRIP_ACCENTS_PATTERN = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 
     public static String removeBefore(String str, String searchStr) {
         return removeBefore(str, searchStr, false);
@@ -190,6 +195,28 @@ public class StringUtils {
         }
 
         return INDEX_NOT_FOUND;
+    }
+
+    public static String stripAccents(final String str) {
+
+        if (str == null) {
+            return null;
+        }
+
+        final StringBuilder decomposed = new StringBuilder(Normalizer.normalize(str, Normalizer.Form.NFD));
+
+        for (int i = 0; i < decomposed.length(); i++) {
+            final char c = decomposed.charAt(i);
+
+            if (c == '\u0141') {
+                decomposed.setCharAt(i, 'L');
+            }
+            else if (c == '\u0142') {
+                decomposed.setCharAt(i, 'l');
+            }
+        }
+
+        return STRIP_ACCENTS_PATTERN.matcher(decomposed).replaceAll(EMPTY);
     }
 
     private StringUtils() { /* Cannot be instantiated */ }
