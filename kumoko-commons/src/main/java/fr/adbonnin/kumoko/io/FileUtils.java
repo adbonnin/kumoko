@@ -42,6 +42,24 @@ public class FileUtils {
         return index != -1;
     }
 
+    public static File withBasename(File file, String basename) {
+
+        if (file == null || basename == null) {
+            return file;
+        }
+
+        final String name = file.getName();
+        final File parentFile = file.getParentFile();
+
+        final int index = indexOfExtension(name);
+        if (index == -1) {
+            return new File(parentFile, basename);
+        }
+
+        final String extension = name.substring(index + 1);
+        return new File(parentFile, basename + EXTENSION_SEPARATOR + extension);
+    }
+
     public static File newNonExistentCleanedFile(File parent, String filename, String emptyFilename) {
         final File cleanedFile = newCleanedFile(parent, filename, emptyFilename);
         return newNonExistentFile(cleanedFile);
@@ -125,8 +143,7 @@ public class FileUtils {
             final char c = sb.charAt(end - 1);
             if (c <= ' ' || c == EXTENSION_SEPARATOR) {
                 --end;
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -143,8 +160,7 @@ public class FileUtils {
         for (char reserved : FILENAME_RESERVED_CHARACTERS) {
             if (c == reserved) {
                 return true;
-            }
-            else if (c < reserved) {
+            } else if (c < reserved) {
                 return false;
             }
         }
@@ -170,20 +186,31 @@ public class FileUtils {
         }
     }
 
-    public static void createDir(File dir) throws IOException {
-        if (dir.exists()) {
-            if (!dir.isDirectory()) {
-                throw new IOException("File exists but is not a directory; directory: " + tryCanonicalPath(dir));
+    public static File createDirectory(File directory) throws IOException {
+
+        if (directory == null) {
+            return null;
+        }
+
+        if (directory.exists()) {
+            if (!directory.isDirectory()) {
+                throw new IOException("File exists but is not a directory; directory: " + tryCanonicalPath(directory));
             }
         }
         else {
-            if (!dir.mkdirs()) {
+            if (!directory.mkdirs()) {
                 // Double-check that the directory wasn't created.
-                if (!dir.isDirectory()) {
-                    throw new IOException("Unable to create directory; directory: " + tryCanonicalPath(dir));
+                if (!directory.isDirectory()) {
+                    throw new IOException("Unable to create directory; directory: " + tryCanonicalPath(directory));
                 }
             }
         }
+
+        return directory;
+    }
+
+    public static File createParentDirectories(File file) throws IOException {
+        return file == null ? null : createDirectory(file.getParentFile());
     }
 
     public static boolean deleteRecursively(File file) throws IOException {

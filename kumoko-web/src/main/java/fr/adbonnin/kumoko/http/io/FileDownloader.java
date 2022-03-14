@@ -35,10 +35,7 @@ public class FileDownloader {
             return file;
         }
 
-        final File parentFile = file.getParentFile();
-        if (parentFile != null) {
-            FileUtils.createDir(parentFile);
-        }
+        FileUtils.createParentDirectories(downloadFile);
 
         try (FileOutputStream fos = new FileOutputStream(downloadFile);
              OutputStream bos = new BufferedOutputStream(fos)) {

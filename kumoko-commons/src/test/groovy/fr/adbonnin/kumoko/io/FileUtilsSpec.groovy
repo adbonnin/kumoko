@@ -57,6 +57,23 @@ class FileUtilsSpec extends Specification {
         extensionLabel = hasExtension ? "with extension '$extension' at $indexOfExtension" : 'without extension'
     }
 
+    def "should replace the basename of a file"() {
+        def file = filename == null ? null : tempDir.resolve(filename).toFile()
+        def expectedFile = expectedFilename == null ? null : tempDir.resolve(expectedFilename).toFile()
+
+        expect:
+        FileUtils.withBasename(file, basename) == expectedFile
+
+        where:
+        filename  | basename || expectedFilename
+        null      | 'new'    || null
+        'old.ext' | null     || 'old.ext'
+
+        'old'     | 'new'    || 'new'
+        'old.'    | 'new'    || 'new.'
+        'old.ext' | 'new'    || 'new.ext'
+    }
+
     def "should return a new non existent cleaned file"() {
         given:
         def emptyFilename = 'empty'
@@ -203,15 +220,21 @@ class FileUtilsSpec extends Specification {
         }
 
         when:
-        FileUtils.createDir(dir)
+        def result = FileUtils.createDirectory(dir)
 
         then:
+        result.is(dir)
         notThrown(IOException)
 
         where:
         dirExists || expectedIsDirecory | expectedMkdirs
         true      || 1                  | 0
         false     || 0                  | 1
+    }
+
+    void "should create a null directory"() {
+        expect:
+        FileUtils.createDirectory(null) == null
     }
 
     void "should throw an exception if the creation of the directory has failed"() {
@@ -223,7 +246,7 @@ class FileUtilsSpec extends Specification {
         }
 
         when:
-        FileUtils.createDir(dir)
+        FileUtils.createDirectory(dir)
 
         then:
         thrown(IOException)
@@ -232,6 +255,31 @@ class FileUtilsSpec extends Specification {
         dirExists || expectedIsDirecory | expectedMkdirs
         true      || 1                  | 0
         false     || 1                  | 1
+    }
+
+    void "should create the parent directories"() {
+        given:
+        def parent = tempDir.resolve("parent").toFile()
+        def file = new File(parent, "file")
+
+        expect:
+        !parent.isDirectory()
+        !file.isFile()
+
+        when:
+        def result = FileUtils.createParentDirectories(file)
+
+        then:
+        result == parent
+
+        and:
+        parent.isDirectory()
+        !file.isFile()
+    }
+
+    void "should create the parent directories of a null file"() {
+        expect:
+        FileUtils.createParentDirectories(null) == null
     }
 
     void "should recursively delete the folder"() {

@@ -21,7 +21,7 @@ public class FolderWatchUtils {
 
     public static File writeCrawlJobs(Iterable<? extends CrawlJobStorable> crawlJobs, File jdownloaderDir, String basename) throws IOException {
         final File crawlJobFile = newCrawlJobFile(jdownloaderDir, basename);
-        FileUtils.createDir(crawlJobFile.getParentFile());
+        FileUtils.createParentDirectories(crawlJobFile);
         writeValue(crawlJobs, crawlJobFile);
         return crawlJobFile;
     }

@@ -18,6 +18,10 @@ fun File.hasExtension(): Boolean {
     return FileUtils.hasExtension(name)
 }
 
+fun File.withBasename(basename: String): File {
+    return FileUtils.withBasename(this, basename)
+}
+
 fun File.newNonExistentCleanedFile(filename: String, emptyFilename: String, retryLimit: Int = Int.MAX_VALUE, builder: NonExistentFileBuilder = SimpleNonExistentFilenameBuilder.INSTANCE): File {
     return FileUtils.newNonExistentCleanedFile(this, filename, emptyFilename, retryLimit, builder)
 }
@@ -34,8 +38,12 @@ fun File.tryCanonicalPath(): String {
     return FileUtils.tryCanonicalPath(this)
 }
 
-fun File.createDir() {
-    return FileUtils.createDir(this)
+fun File.createDirectory():File {
+    return FileUtils.createDirectory(this)
+}
+
+fun File.createParentDirectories():File {
+    return FileUtils.createParentDirectories(this)
 }
 
 fun File.deleteRecursively(): Boolean {
