@@ -197,7 +197,7 @@ public class StringUtils {
         return INDEX_NOT_FOUND;
     }
 
-    public static String stripAccents(final String str) {
+    public static String stripAccents(String str) {
 
         if (str == null) {
             return null;
